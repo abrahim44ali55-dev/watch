@@ -34,9 +34,6 @@ h1{font-size:26px;font-weight:800}
 .inputRow{margin-top:28px;display:flex;gap:10px}
 .inputRow input{flex:1;padding:14px 16px;border-radius:12px;border:1px solid #222;background:#111;color:#fff;font-size:15px;outline:none}
 .inputRow button{padding:14px 22px;border-radius:12px;border:0;background:#fff;color:#000;font-weight:700;font-size:14px;cursor:pointer}
-.row2{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-.row2 select{background:#111;color:#fff;border:1px solid #222;border-radius:10px;padding:10px 12px;font-size:13px}
-.row2 label{font-size:12px;color:#888;display:flex;align-items:center;gap:6px}
 .examples{margin-top:32px}
 .examples h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#666}
 .cards{margin-top:14px;display:grid;gap:10px}
@@ -45,11 +42,12 @@ h1{font-size:26px;font-weight:800}
 .meta .title{font-size:14px;font-weight:600}
 .meta .tag{margin-top:4px;font-size:11px;color:#888}
 .badge{font-size:11px;padding:4px 8px;border-radius:20px;background:#222;color:#aaa}
-.footer{margin-top:40px;padding-top:20px;border-top:1px solid #111;color:#666;font-size:12px;line-height:1.6}
-code{background:#111;border:1px solid #222;padding:2px 6px;border-radius:6px;color:#aaa;font-size:11px;word-break:break-all}
+.card.kids .badge{background:#1a2e1a;color:#7bd87b}
+.footer{margin-top:40px;padding-top:20px;border-top:1px solid #111;color:#666;font-size:12px}
+code{background:#111;border:1px solid #222;padding:2px 6px;border-radius:6px;color:#aaa;font-size:12px}
 #player{position:fixed;inset:0;width:100vw;height:100dvh;background:#000;z-index:9999;display:none}
 #player.active{display:block}
-#ytDiv{width:100%;height:100%}
+#player iframe{width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
@@ -60,34 +58,21 @@ code{background:#111;border:1px solid #222;padding:2px 6px;border-radius:6px;col
 <input id="urlInput" placeholder="https://www.youtube.com/watch?v=..." />
 <button onclick="playFromInput()">Play</button>
 </div>
-<div class="row2">
-<label><input type="checkbox" id="ccCheck"> CC</label>
-<select id="ccLang"><option value="ar">ar</option><option value="en">en</option><option value="fr">fr</option><option value="es">es</option><option value="de">de</option><option value="tr">tr</option><option value="vi">vi</option><option value="ja">ja</option><option value="ko">ko</option><option value="ru">ru</option><option value="pt">pt</option><option value="hi">hi</option><option value="fa">fa</option></select>
-<label>Audio</label>
-<select id="audioLang"><option value="">default</option><option value="ar">ar</option><option value="en">en</option><option value="fr">fr</option><option value="vi">vi</option><option value="es">es</option></select>
-</div>
 <div class="examples">
 <h3>Try Examples</h3>
 <div class="cards">
-<a class="card" href="?id=XqZsoesa55w&cc=1&cc_lang=fr&audio=fr"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/XqZsoesa55w/mqdefault.jpg"/><div class="meta"><div class="title">Baby Shark FR</div><div class="tag">cc=1 cc_lang=fr audio=fr</div></div></div><span class="badge">FR</span></a>
-<a class="card" href="?id=XqZsoesa55w&cc=1&cc_lang=en&audio=en"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/XqZsoesa55w/mqdefault.jpg"/><div class="meta"><div class="title">Baby Shark EN</div><div class="tag">cc=1 cc_lang=en audio=en</div></div></div><span class="badge">EN</span></a>
-<a class="card" href="?id=XqZsoesa55w&cc=1&cc_lang=vi&audio=vi"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/XqZsoesa55w/mqdefault.jpg"/><div class="meta"><div class="title">Baby Shark VI</div><div class="tag">cc=1 cc_lang=vi audio=vi</div></div></div><span class="badge">VI</span></a>
+<a class="card kids" href="?id=XqZsoesa55w"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/XqZsoesa55w/mqdefault.jpg"/><div class="meta"><div class="title">Baby Shark Dance</div><div class="tag">Kids • 15B views</div></div></div><span class="badge">KIDS</span></a>
+<a class="card" href="?id=dQw4w9WgXcQ"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg"/><div class="meta"><div class="title">Normal Video Test</div><div class="tag">Standard</div></div></div><span class="badge">NORMAL</span></a>
+<a class="card" href="?id=jNQXAC9IVRw"><div style="display:flex;align-items:center;gap:12px"><img class="thumb" src="https://i.ytimg.com/vi/jNQXAC9IVRw/mqdefault.jpg"/><div class="meta"><div class="title">Me at the zoo</div><div class="tag">First video</div></div></div><span class="badge">SHORT</span></a>
 </div>
 </div>
 <div class="footer">
 <div>How to use:</div>
-<div style="margin-top:8px"><code>https://abrahim44ali55-dev.github.io/watch/?id=videoid&cc=1&cc_lang=ar&audio=ar</code></div>
-<div style="margin-top:8px"><code>https://abrahim44ali55-dev.github.io/watch/?id=videoid&cc=1&cc_lang=fr&audio=en</code></div>
-<div style="margin-top:8px"><code>https://abrahim44ali55-dev.github.io/watch/?id=videoid&cc=1&cc_lang=vi&audio=vi</code></div>
+<div style="margin-top:8px"><code>https://abrahim44ali55-dev.github.io/watch/?id=videoid</code></div>
 </div>
 </div>
-<div id="player"><div id="ytDiv"></div></div>
-<script src="https://www.youtube.com/iframe_api"></script>
+<div id="player"><iframe id="ytFrame" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
 <script>
-let player=null;
-let pending=null;
-let ytReady=false;
-
 function getId(u){
 if(!u) return null;
 u=u.trim();
@@ -96,132 +81,37 @@ if(m) return m[1];
 if(/^[A-Za-z0-9_-]{11}$/.test(u)) return u;
 return null;
 }
-
-function onYouTubeIframeAPIReady(){
-ytReady=true;
-if(pending) createPlayer(pending.id, pending.opts);
-else init();
+function sendCommand(func,args){
+let iframe=document.getElementById('ytFrame');
+if(!iframe.contentWindow) return;
+iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:func,args:args||[]}),'*');
 }
-
-function createPlayer(id, opts){
+function play(id){
+if(!id) return;
 document.getElementById('home').style.display='none';
 document.getElementById('player').classList.add('active');
-let cc_load = opts.cc==='1'?1:0;
-let lang = opts.cc_lang||'ar';
-let audio = opts.audio||'';
-
-if(player){
-player.loadVideoById(id);
-applyLangs(opts);
-return;
+let frame=document.getElementById('ytFrame');
+frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&rel=0&modestbranding=1&controls=1&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
+let tries=0;
+let iv=setInterval(()=>{
+tries++;
+try{sendCommand('unMute');sendCommand('setVolume',[100]);sendCommand('playVideo');}catch(e){}
+if(tries>=10) clearInterval(iv);
+},500);
 }
-
-player = new YT.Player('ytDiv',{
-width:'100%',
-height:'100%',
-videoId:id,
-playerVars:{
-autoplay:1,
-mute:1,
-loop:1,
-playlist:id,
-rel:0,
-modestbranding:1,
-controls:1,
-playsinline:1,
-cc_load_policy: cc_load,
-cc_lang_pref: lang,
-hl: audio||lang,
-iv_load_policy:3
-},
-events:{
-onReady: (e)=>{
-e.target.playVideo();
-setTimeout(()=>{ try{e.target.unMute(); e.target.setVolume(100);}catch(x){} },400);
-applyLangs(opts);
-setTimeout(()=>applyLangs(opts),1500);
-setTimeout(()=>applyLangs(opts),3000);
-},
-onStateChange:(e)=>{
-if(e.data===YT.PlayerState.PLAYING){
-try{e.target.unMute(); e.target.setVolume(100);}catch(x){}
-setTimeout(()=>applyLangs(opts),500);
-}
-}
-}
-});
-}
-
-function applyLangs(opts){
-if(!player) return;
-let cc_lang = (opts.cc_lang||'ar').toLowerCase();
-let audio_lang = (opts.audio||'').toLowerCase();
-try{
-if(opts.cc==='1'){
-player.setOption('captions','reload',true);
-let tracklist = player.getOption('captions','tracklist');
-if(tracklist && tracklist.length){
-let found = tracklist.find(t=> t.languageCode.toLowerCase()===cc_lang || t.languageCode.toLowerCase().startsWith(cc_lang));
-if(!found) found = tracklist.find(t=> t.languageCode.toLowerCase().includes(cc_lang));
-if(found){
-player.setOption('captions','track',{languageCode:found.languageCode});
-}else{
-let auto = tracklist.find(t=> t.languageCode.toLowerCase().startsWith(cc_lang) || t.languageCode.toLowerCase().includes('auto'));
-if(auto) player.setOption('captions','track',{languageCode:auto.languageCode});
-}
-}else{
-player.setOption('captions','track',{languageCode:cc_lang});
-}
-player.setOption('captions','fontSize',1);
-}
-}catch(e){}
-
-try{
-if(audio_lang){
-let audioTracks = player.getAvailableAudioTracks ? player.getAvailableAudioTracks() : null;
-if(audioTracks && audioTracks.length){
-let aFound = audioTracks.find(a=> a.languageCode && a.languageCode.toLowerCase()===audio_lang);
-if(aFound && player.setAudioTrack) player.setAudioTrack(aFound);
-}
-}
-}catch(e){}
-}
-
-function play(id,opts){
-pending={id:id,opts:opts};
-if(ytReady) createPlayer(id,opts);
-else{
-document.getElementById('home').style.display='none';
-document.getElementById('player').classList.add('active');
-}
-}
-
 function playFromInput(){
 let id=getId(document.getElementById('urlInput').value);
-if(!id) return;
-let cc=document.getElementById('ccCheck').checked?'1':'0';
-let cc_lang=document.getElementById('ccLang').value;
-let audio=document.getElementById('audioLang').value;
-let url=`?id=${id}&cc=${cc}&cc_lang=${cc_lang}`;
-if(audio) url+=`&audio=${audio}`;
-history.pushState(null,'',url);
-play(id,{cc:cc,cc_lang:cc_lang,audio:audio});
+if(id){history.pushState(null,'',`?id=${id}`);play(id);}
 }
-
 function init(){
 let p=new URLSearchParams(location.search);
 let id=null;
 if(p.get('id')) id=getId(p.get('id'));
 if(p.get('v')) id=getId(p.get('v'));
 if(p.get('url')) id=getId(p.get('url'));
-if(!id) return;
-let cc=p.get('cc')||'0';
-let cc_lang=(p.get('cc_lang')||p.get('lang')||'ar').toLowerCase();
-let audio=(p.get('audio')||p.get('audio_lang')||'').toLowerCase();
-play(id,{cc:cc,cc_lang:cc_lang,audio:audio});
+if(id) play(id);
 }
-
-setTimeout(()=>{ if(!ytReady) init(); },2000);
+init();
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
