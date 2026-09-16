@@ -24,15 +24,32 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Player</title>
+<title>youtu-be</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-#home{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#000;z-index:2;padding:20px}
-#home h1{font-size:22px;font-weight:700}
-#home input{width:100%;max-width:520px;padding:14px 18px;border-radius:12px;border:1px solid #333;background:#111;color:#fff;font-size:15px;outline:none}
-#home button{padding:12px 28px;border-radius:12px;border:0;background:#fff;color:#000;font-weight:700;font-size:15px;cursor:pointer}
-#home small{opacity:0.35;font-size:11px}
+body{background:#000;color:#fff;font-family:system-ui, -apple-system, sans-serif;min-height:100vh}
+#home{max-width:680px;margin:0 auto;padding:40px 20px 60px}
+h1{font-size:26px;font-weight:800;letter-spacing:-0.5px}
+.sub{margin-top:8px;color:#888;font-size:14px}
+.inputRow{margin-top:28px;display:flex;gap:10px}
+.inputRow input{flex:1;padding:14px 16px;border-radius:12px;border:1px solid #222;background:#111;color:#fff;font-size:15px;outline:none}
+.inputRow input:focus{border-color:#444}
+.inputRow button{padding:14px 22px;border-radius:12px;border:0;background:#fff;color:#000;font-weight:700;font-size:14px;cursor:pointer}
+.inputRow button:hover{background:#eaeaea}
+.examples{margin-top:32px}
+.examples h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#666}
+.cards{margin-top:14px;display:grid;gap:10px}
+.card{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;background:#0f0f0f;border:1px solid #1a1a1a;text-decoration:none;color:#fff;transition:0.15s}
+.card:hover{background:#151515;border-color:#2a2a2a}
+.card .left{display:flex;align-items:center;gap:12px}
+.thumb{width:64px;height:36px;border-radius:8px;background:#222;object-fit:cover}
+.meta .title{font-size:14px;font-weight:600}
+.meta .tag{margin-top:4px;font-size:11px;color:#888}
+.badge{font-size:11px;padding:4px 8px;border-radius:20px;background:#222;color:#aaa}
+.card.kids .badge{background:#1a2e1a;color:#7bd87b}
+.card.short .badge{background:#1a1a2e;color:#8b8bff}
+.footer{margin-top:40px;padding-top:20px;border-top:1px solid #111;color:#444;font-size:11px}
+code{background:#111;border:1px solid #222;padding:2px 6px;border-radius:6px;color:#aaa;font-size:12px}
 #player{position:fixed;inset:0;width:100vw;height:100dvh;background:#000;z-index:9999;display:none}
 #player.active{display:block}
 #player iframe{width:100%;height:100%;border:0}
@@ -41,43 +58,115 @@ body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
 <body>
 
 <div id="home">
-<h1>Paste YouTube Link</h1>
-<input id="urlInput" placeholder="https://www.youtube.com/watch?v=..." />
-<button onclick="playFromInput()">Play</button>
-<small>Or use ?url= or ?v= directly — player.html?url=https://www.youtube.com/watch?v=XXXX</small>
+  <h1>youtu-be</h1>
+  <div class="sub">Paste YouTube link and play full page. No buttons, clean player for apps.</div>
+  <div class="inputRow">
+    <input id="urlInput" placeholder="https://www.youtube.com/watch?v=..." />
+    <button onclick="playFromInput()">Play</button>
+  </div>
+  <div class="examples">
+    <h3>Try Examples</h3>
+    <div class="cards">
+      <a class="card kids" href="?id=XqZsoesa55w">
+        <div class="left">
+          <img class="thumb" src="https://i.ytimg.com/vi/XqZsoesa55w/mqdefault.jpg" />
+          <div class="meta">
+            <div class="title">Baby Shark Dance</div>
+            <div class="tag">Kids video • Made for kids • 15B views</div>
+          </div>
+        </div>
+        <span class="badge">KIDS</span>
+      </a>
+      <a class="card" href="?id=dQw4w9WgXcQ">
+        <div class="left">
+          <img class="thumb" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg" />
+          <div class="meta">
+            <div class="title">Normal Video Test</div>
+            <div class="tag">Standard YouTube • 1.6B views</div>
+          </div>
+        </div>
+        <span class="badge">NORMAL</span>
+      </a>
+      <a class="card short" href="?id=jNQXAC9IVRw">
+        <div class="left">
+          <img class="thumb" src="https://i.ytimg.com/vi/jNQXAC9IVRw/mqdefault.jpg" />
+          <div class="meta">
+            <div class="title">Me at the zoo - First YouTube Video</div>
+            <div class="tag">Short test • 300M views</div>
+          </div>
+        </div>
+        <span class="badge">SHORTS STYLE</span>
+      </a>
+    </div>
+  </div>
+  <div class="footer">
+    <div>Simple link format:</div>
+    <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+      <div><code>?id=XqZsoesa55w</code> or <code>?id=dQw4w9WgXcQ</code></div>
+      <div><code>?url=https://www.youtube.com/watch?v=XqZsoesa55w</code></div>
+    </div>
+  </div>
 </div>
 
 <div id="player">
-<iframe id="ytFrame" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+  <iframe id="ytFrame" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
 </div>
 
 <script>
 function getId(u){
  if(!u) return null;
  u=u.trim();
- let m=u.match(/(?:v=|youtu\.be\/|shorts\/)([A-Za-z0-9_-]{11})/);
+ let m=u.match(/(?:v=|youtu\.be\/|shorts\/|kids\.com\/watch\?v=)([A-Za-z0-9_-]{11})/);
  if(m) return m[1];
  if(/^[A-Za-z0-9_-]{11}$/.test(u)) return u;
  return null;
 }
+
+function sendCommand(func, args){
+  const iframe = document.getElementById('ytFrame');
+  if(!iframe.contentWindow) return;
+  iframe.contentWindow.postMessage(JSON.stringify({
+    event:'command',
+    func: func,
+    args: args || []
+  }), '*');
+}
+
 function play(id){
  if(!id) return;
  document.getElementById('home').style.display='none';
  const p=document.getElementById('player');
  p.classList.add('active');
- document.getElementById('ytFrame').src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&loop=1&playlist=${id}&rel=0&modestbranding=1&controls=1&playsinline=1`;
- history.replaceState(null,'',`?url=https://www.youtube.com/watch?v=${id}`);
+ const frame = document.getElementById('ytFrame');
+ // FIX: enablejsapi + mute=1 first then auto unmute - same design
+ frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&rel=0&modestbranding=1&controls=1&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
+
+ // محاولة شيل الميوت - بس هاي الشغلة، بدون شي ثاني
+ let tries = 0;
+ const unmuteInterval = setInterval(()=>{
+   tries++;
+   try{
+     sendCommand('unMute');
+     sendCommand('setVolume', [100]);
+     sendCommand('playVideo');
+   }catch(e){}
+   if(tries >= 10) clearInterval(unmuteInterval);
+ }, 500);
 }
+
 function playFromInput(){
  const id=getId(document.getElementById('urlInput').value);
- if(id) play(id);
+ if(id){ 
+   history.pushState(null,'',`?id=${id}`);
+   play(id);
+ }
 }
 function init(){
  const params=new URLSearchParams(location.search);
  let id=null;
+ if(params.get('id')) id=getId(params.get('id'));
  if(params.get('v')) id=getId(params.get('v'));
  if(params.get('url')) id=getId(params.get('url'));
- if(params.get('id')) id=getId(params.get('id'));
  if(id) play(id);
 }
 window.addEventListener('message',e=>{
